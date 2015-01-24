@@ -27,10 +27,8 @@ types = {
 # Load the data set
 data = read_csv(file, header=0, index_col=None, engine='c');  
 
-data['min'] = (data['hour'] % 60).astype(np.int8)
-#data['day'] = (data['hour'] / 1000000).astype(int)
-#data['month'] = ((data['hour'] - data['day'] * 1000000) / 10000).astype(int)
-data['hour'] = ((data['hour'] - data['min']) / 100 % 24).astype(np.int8)
+minutes = (data['hour'] % 60).astype(np.int8)
+data['hour'] = (((((data['hour'] % 10000) - minutes) / 100) % 24) * 60 + minutes).astype(np.uint);
 
 data = data.set_index('id')
 data.to_csv("../data/train_hourfixed.csv");
