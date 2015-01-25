@@ -14,15 +14,7 @@ Set the csv file to modify below.
 file = "../data/train_random1on100.csv";
 
 
-import numpy as np;
 from pandas import read_csv;
-
-#Set data type
-types = {
-    'id':np.uint64,
-    'click':np.bool,
-    'hour':np.int32,
-};
 
 # Load the data set
 data = read_csv(file, header=0, index_col=None, engine='c');  
