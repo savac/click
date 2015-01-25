@@ -53,11 +53,11 @@ def csv_to_vw(loc_csv, loc_output, train=True):
                     label = -1 #we set negative label to -1
                 #print (numerical_features)
                 #print categorical_features
-                j.write( "%s '%s %s\n" % (label,line[0],categorical_features))
+                j.write( "%s '%s %s" % (label,line[0],categorical_features)) # sava:/n might be already attached to the last feature
 
             else: #we dont care about labels
                 #print ( "1 '%s |i%s |c%s\n" % (line[0],numerical_features,categorical_features) )
-                j.write( "1 '%s %s\n" % (line[0],categorical_features) )
+                j.write( "1 '%s %s" % (line[0],categorical_features) )
 
   #Reporting progress
             #print counter
@@ -81,6 +81,7 @@ def create_submission(f_in, f_out):
             row = line.strip().split(" ")
             try:
                 outfile.write("%s,%f\n"%(row[1],zygmoid(float(row[0]))))
+                #outfile.write("%s,%f\n"%(row[1],0.16)
             except:
                 pass
 
@@ -123,6 +124,7 @@ def logloss_total(f_preds, f_original):
         
         counter += 1
         loss += logloss(p, y)
+    print "Log loss = ", loss/counter
     return loss/counter
 
 
