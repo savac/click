@@ -28,22 +28,68 @@ def csv_to_vw(loc_csv, loc_output, train=True):
                 new_date= datetime(int("20"+a[0:2]),int(a[2:4]),int(a[4:6]))
                 day = new_date.strftime("%A")
                 hour= a[6:8]
-                categorical_features += " |hr %s" % hour
+                categorical_features += "|hr %s" % hour
                 categorical_features += " |day %s" % day
+
                 # 24 columns in data    
-                for i in range(3,24):
-                    if line[i] != "":
-                        categorical_features += "|c%s %s" % (str(i),line[i])
+                
+                # banner position
+                categorical_features += " |b"
+                categorical_features += " %s" % (line[4]) 
+                
+                # site
+                categorical_features += " |site"
+                for i in range(5,8):
+                    categorical_features += " %s" % (line[i])
+                        
+                # app
+                categorical_features += " |app"
+                for i in range(8,11):
+                    categorical_features += " %s" % (line[i])
+                        
+                # device
+                categorical_features += " |e"
+                for i in range(11,16):
+                    categorical_features += " %s" % (line[i])
+                
+                # C1, C14-21
+                categorical_features += " |num"
+                for i in [3] + range(16,24):
+                    categorical_features += " n%s:%s" % (str(i),line[i].strip('\n'))
+                    
             else:
                 a = line[1]
                 new_date= datetime(int("20"+a[0:2]),int(a[2:4]),int(a[4:6]))
                 day = new_date.strftime("%A")
                 hour= a[6:8]
-                categorical_features += " |hr %s" % hour
+                categorical_features += "|hr %s" % hour
                 categorical_features += " |day %s" % day
-                for i in range(2,23):
-                    if line[i] != "":
-                        categorical_features += " |c%s %s" % (str(i+1),line[i])
+
+                # 24 columns in data    
+                
+                # banner position
+                categorical_features += " |b"
+                categorical_features += " %s" % (line[4-1]) 
+                
+                # site
+                categorical_features += " |site"
+                for i in range(5,8):
+                    categorical_features += " %s" % (line[i-1])
+                        
+                # app
+                categorical_features += " |app"
+                for i in range(8,11):
+                    categorical_features += " %s" % (line[i-1])
+                        
+                # device
+                categorical_features += " |e"
+                for i in range(11,16):
+                    categorical_features += " %s" % (line[i-1])
+                
+                # C1, C14-21
+                categorical_features += " |num"
+                for i in [3] + range(16,24):
+                    categorical_features += " n%s:%s" % (str(i),line[i-1].strip('\n'))
   #Creating the labels
             #print "a"
             if train: #we care about labels
@@ -53,11 +99,11 @@ def csv_to_vw(loc_csv, loc_output, train=True):
                     label = -1 #we set negative label to -1
                 #print (numerical_features)
                 #print categorical_features
-                j.write( "%s '%s %s" % (label,line[0],categorical_features)) # sava:/n might be already attached to the last feature
+                j.write( "%s '%s %s\n" % (label,line[0],categorical_features)) # sava:\n might be already attached to the last feature
 
             else: #we dont care about labels
                 #print ( "1 '%s |i%s |c%s\n" % (line[0],numerical_features,categorical_features) )
-                j.write( "1 '%s %s" % (line[0],categorical_features) )
+                j.write( "1 '%s %s\n" % (line[0],categorical_features) )
 
   #Reporting progress
             #print counter
