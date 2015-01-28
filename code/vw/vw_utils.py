@@ -1,8 +1,7 @@
 import math
 from datetime import datetime
 import subprocess
-from itertools import izip
-
+		
 def csv_to_vw(loc_csv, loc_output, train=True):
     start = datetime.now()
     print("\nTurning %s into %s. Is_train_set? %s"%(loc_csv,loc_output,train))
@@ -54,7 +53,7 @@ def csv_to_vw(loc_csv, loc_output, train=True):
                 
                 # C1, C14-21
                 categorical_features += " |num"
-                for i in [3] + range(16,24):
+                for i in [3] + list(range(16,24)):
                     categorical_features += " n%s:%s" % (str(i),line[i].strip('\n'))
                     
             else:
@@ -88,7 +87,7 @@ def csv_to_vw(loc_csv, loc_output, train=True):
                 
                 # C1, C14-21
                 categorical_features += " |num"
-                for i in [3] + range(16,24):
+                for i in [3] + list(range(16,24)):
                     categorical_features += " n%s:%s" % (str(i),line[i-1].strip('\n'))
   #Creating the labels
             #print "a"
@@ -99,7 +98,7 @@ def csv_to_vw(loc_csv, loc_output, train=True):
                     label = -1 #we set negative label to -1
                 #print (numerical_features)
                 #print categorical_features
-                j.write( "%s '%s %s\n" % (label,line[0],categorical_features)) # sava:\n might be already attached to the last feature
+                j.write(bytes("%s '%s %s\n" % (label,line[0],categorical_features), 'UTF-8')) # sava:\n might be already attached to the last feature
 
             else: #we dont care about labels
                 #print ( "1 '%s |i%s |c%s\n" % (line[0],numerical_features,categorical_features) )
@@ -170,7 +169,7 @@ def logloss_total(f_preds, f_original):
         
         counter += 1
         loss += logloss(p, y)
-    print "Log loss = ", loss/counter
+    print("Log loss = %d" % (loss/counter))
     return loss/counter
 
 

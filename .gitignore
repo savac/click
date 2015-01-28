@@ -34,3 +34,4 @@ crashlytics.properties
 crashlytics-build.properties
 
 data/*.csv
+data.*.vw
