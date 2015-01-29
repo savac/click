@@ -23,7 +23,7 @@ except IndexError:
 
 if feature_list[selected_feature] == 'app_domain' or feature_list[selected_feature] == 'app_category':
     print("app_domain and app_category should not be used.")
-    exit
+    sys.exit(1)
 
 if data_type == 'train' or data_type == 'validation':
     col_offset = 2 # Skip the ID and the click
@@ -32,7 +32,7 @@ elif data_type == 'test':
     
 if isfile(sys.argv[2]) :
     print('File "' + sys.argv[2] + '" already exist.')
-    exit
+    sys.exit(1)
 
 In = open(sys.argv[1], 'r') # Open file for to transform (csv)
 Out= open(sys.argv[2], 'wb') # Open file to write (txt)
@@ -65,7 +65,7 @@ for line in In:
 
     label = 2 * int(line[1]) - 1
     if data_type == 'train' or data_type == 'validation':
-        Out.write(bytes(label + " '" + line[0] + ' | ' + marker + value + '\n', encoding))
+        Out.write(bytes(str(label) + " '" + line[0] + ' | ' + marker + value + '\n', encoding))
     elif data_type == 'test':
         Out.write(bytes("1 '" + line[0] + ' | ' + marker + value + '\n', encoding))
         
