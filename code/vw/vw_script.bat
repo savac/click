@@ -1,7 +1,12 @@
 @echo off
 echo "Converting to the vw format"
-python -c "import vw_utils;vw_utils.csv_to_vw('../../data/train_random1on100.csv', '../../data/train.vw',train=True)"
-python -c "import vw_utils;vw_utils.csv_to_vw('../../data/validation.csv', '../../data/validation.vw',train=False)"
+rem python -c "import vw_utils;vw_utils.csv_to_vw('../../data/train_random1on100.csv', '../../data/train.txt',train=True)"
+rem python -c "import vw_utils;vw_utils.csv_to_vw('../../data/validation.csv', '../../data/validation.txt',train=False)"
+
+
+echo vw version & vw --version
+echo.
 
 echo "Training"
-rem vw ../../data/train.vw -b 28 -c --passes 3 --early_terminate 2 -l 0.4 --
+rem -f Predictor.vw -t ../../data/validation.txt
+vw -d ../../data/train.txt -b 18 -p ../../data/predictions.txt --loss_function logistic

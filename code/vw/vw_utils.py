@@ -72,8 +72,7 @@ def csv_to_vw(loc_csv, loc_output, train=True):
                 
                 # site
                 categorical_features += " |site"
-                for i in range(5,8):
-                    categorical_features += " %s" % (line[i-1])
+                categorical_features += " %s" % (line[4])
                         
                 # app
                 categorical_features += " |app"
