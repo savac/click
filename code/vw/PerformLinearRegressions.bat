@@ -1,9 +1,9 @@
 @echo off
 
-mkdir ../../data
-mkdir ../../data/SingleFeature
-mkdir ../../data/SingleFeature/Models
-mkdir ../../data/SingleFeature/Summary
+mkdir ..\..\data
+mkdir ..\..\data\SingleFeature
+mkdir ..\..\data\SingleFeature\Models
+mkdir ..\..\data\SingleFeature\Summary
 
 echo Create training sets...
 python SingleFeatureSelection.py ../../data/train_random1on100.csv ../../data/SingleFeature/hour.txt train hour
