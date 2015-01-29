@@ -1,4 +1,4 @@
-rng('shuffle');
+%rng('Default');
 
 ratio = 0.01;
 
