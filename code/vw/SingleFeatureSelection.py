@@ -31,7 +31,6 @@ elif data_type == 'test':
     col_offset = 1 # Skip the ID
     
 if isfile(sys.argv[2]) :
-    print('File "' + sys.argv[2] + '" already exist.')
     sys.exit(1)
 
 In = open(sys.argv[1], 'r') # Open file for to transform (csv)
@@ -64,9 +63,9 @@ for line in In:
         value = line[col_offset+selected_feature]
 
     label = 2 * int(line[1]) - 1
-    if data_type == 'train' or data_type == 'validation':
+    if data_type == 'train':
         Out.write(bytes(str(label) + " '" + line[0] + ' | ' + marker + value + '\n', encoding))
-    elif data_type == 'test':
+    elif data_type == 'test' or data_type == 'validation':
         Out.write(bytes("1 '" + line[0] + ' | ' + marker + value + '\n', encoding))
         
 print("Task finished in %s." % (datetime.now() - start))
