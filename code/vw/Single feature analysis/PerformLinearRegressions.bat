@@ -53,26 +53,27 @@ python SingleFeatureSelection.py ../../data/validationAllDays.csv ../../data/Sin
 python SingleFeatureSelection.py ../../data/validationAllDays.csv ../../data/SingleFeature/validation/C21.txt validation C21
 
 echo Training
-vw -d ../../data/SingleFeature/hour.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../../data/SingleFeature/Models/hour.vw
-vw -d ../../data/SingleFeature/day.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../../data/SingleFeature/Models/day.vw
-vw -d ../../data/SingleFeature/C1.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../../data/SingleFeature/Models/C1.vw
-vw -d ../../data/SingleFeature/banner_pos.txt -b 18 -c --holdout_off --passes 10 --l1 0 --l2 0 --sgd --loss_function logistic -f ../data/SingleFeature/Models/banner_pos.vw
-vw -d ../../data/SingleFeature/site_id.txt -b 18 -c --holdout_off --passes 10 --l1 0 --l2 0 --sgd --loss_function logistic -f ../../data/SingleFeature/Models/site_id.vw
-vw -d ../../data/SingleFeature/site_category.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../data/SingleFeature/Models/site_category.vw --readable_model ../data/SingleFeature/Models/site_category.txt > ../../data/SingleFeature/Summary/site_category.txt
-vw -d ../../data/SingleFeature/app_id.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../../data/SingleFeature/Models/app_id.vw
-vw -d ../../data/SingleFeature/device_id.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../data/SingleFeature/Models/device_id.vw
-vw -d ../../data/SingleFeature/device_ip.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../data/SingleFeature/Models/device_ip.vw
-vw -d ../../data/SingleFeature/device_model.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../data/SingleFeature/Models/device_model.vw
-vw -d ../../data/SingleFeature/device_type.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../data/SingleFeature/Models/device_type.vw
-vw -d ../../data/SingleFeature/device_conn_type.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../data/SingleFeature/Models/device_conn_type.vw
-vw -d ../../data/SingleFeature/C14.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../../data/SingleFeature/Models/C14.vw
-vw -d ../../data/SingleFeature/C15.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../../data/SingleFeature/Models/C15.vw
-vw -d ../../data/SingleFeature/C16.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../../data/SingleFeature/Models/C16.vw
-vw -d ../../data/SingleFeature/C17.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../../data/SingleFeature/Models/C17.vw
-vw -d ../../data/SingleFeature/C18.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../../data/SingleFeature/Models/C18.vw
-vw -d ../../data/SingleFeature/C19.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../../data/SingleFeature/Models/C19.vw
-vw -d ../../data/SingleFeature/C20.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../../data/SingleFeature/Models/C20.vw
-vw -d ../../data/SingleFeature/C21.txt -b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic -f ../../data/SingleFeature/Models/C21.vw
+set settings=-b 18 -c --passes 10 --l1 0 --l2 0 --sgd --holdout_off --loss_function logistic
+vw %settings% -d ../../data/SingleFeature/hour.txt -f ../../data/SingleFeature/Models/hour.vw
+vw %settings% -d ../../data/SingleFeature/day.txt -f ../../data/SingleFeature/Models/day.vw
+vw %settings% -d ../../data/SingleFeature/C1.txt -f ../../data/SingleFeature/Models/C1.vw
+vw %settings% -d ../../data/SingleFeature/banner_pos.txt -f ../data/SingleFeature/Models/banner_pos.vw
+vw %settings% -d ../../data/SingleFeature/site_id.txt -f ../../data/SingleFeature/Models/site_id.vw
+vw %settings% -d ../../data/SingleFeature/site_category.txt -f ../data/SingleFeature/Models/site_category.vw
+vw %settings% -d ../../data/SingleFeature/app_id.txt -f ../../data/SingleFeature/Models/app_id.vw
+vw %settings% -d ../../data/SingleFeature/device_id.txt -f ../data/SingleFeature/Models/device_id.vw
+vw %settings% -d ../../data/SingleFeature/device_ip.txt -f ../data/SingleFeature/Models/device_ip.vw
+vw %settings% -d ../../data/SingleFeature/device_model.txt -f ../data/SingleFeature/Models/device_model.vw
+vw %settings% -d ../../data/SingleFeature/device_type.txt -f ../data/SingleFeature/Models/device_type.vw
+vw %settings% -d ../../data/SingleFeature/device_conn_type.txt -f ../data/SingleFeature/Models/device_conn_type.vw
+vw %settings% -d ../../data/SingleFeature/C14.txt -f ../../data/SingleFeature/Models/C14.vw
+vw %settings% -d ../../data/SingleFeature/C15.txt -f ../../data/SingleFeature/Models/C15.vw
+vw %settings% -d ../../data/SingleFeature/C16.txt -f ../../data/SingleFeature/Models/C16.vw
+vw %settings% -d ../../data/SingleFeature/C17.txt -f ../../data/SingleFeature/Models/C17.vw
+vw %settings% -d ../../data/SingleFeature/C18.txt -f ../../data/SingleFeature/Models/C18.vw
+vw %settings% -d ../../data/SingleFeature/C19.txt -f ../../data/SingleFeature/Models/C19.vw
+vw %settings% -d ../../data/SingleFeature/C20.txt -f ../../data/SingleFeature/Models/C20.vw
+vw %settings% -d ../../data/SingleFeature/C21.txt -f ../../data/SingleFeature/Models/C21.vw
 
 echo Validation (on Fridays)
 vw -t -i ../../data/SingleFeature/Models/hour.vw
