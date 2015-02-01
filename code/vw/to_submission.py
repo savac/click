@@ -20,4 +20,4 @@ probabilities_file.write("id,click\n")
 
 for line in prediction_file:
     field = line.split(' ')
-    probabilities_file.write(field[1][1:-1] + ',' + str(to_prob(float(field[0]))) + '\n')
+    probabilities_file.write(field[1][:-1] + ',' + str(to_prob(float(field[0]))) + '\n')

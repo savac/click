@@ -4,7 +4,9 @@ Created on Wed Jan 28 21:02:18 2015
 
 @author: Antoine
 
-Create a new data set with only one feature at the vw format
+python csv_to_txt <csv> <txt> <type>
+
+type can be "train", "validation" or "test"
 """
 import sys
 from os.path import isfile
